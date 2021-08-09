@@ -10,6 +10,10 @@ body {
   margin: 0 auto;
 }
 
+header {
+  margin-top: 50px;
+}
+
 h1 { 
   display: inline-block;
   font-size: 100px;
