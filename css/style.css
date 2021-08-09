@@ -1,0 +1,52 @@
+
+/* /////HEADER AND FOOTER///// */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 1000px;
+  background-color: rgb(196, 236, 247);
+  margin: 0 auto;
+}
+
+h1 { 
+  display: inline-block;
+  font-size: 100px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 25px;
+}
+
+div {
+  display: inline;
+  padding: 10px;
+}
+
+/* ////IMAGES//// */
+
+#busimage {
+  width: 200px;
+}
+
+#left_product_img {
+  height: 300px;
+  width: 300px;
+  margin-top: 40px;
+  border: 2px solid black;
+}
+
+#middle_product_img {
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+}
+
+#right_product_img {
+  height: 300px;
+  width: 300px;
+  border: 2px solid black;
+}
