@@ -9,7 +9,7 @@ const rightProductImageTag = document.getElementById('right_product_img');
 
 let totalClicks = 0;
 
-// VARIABLES TO STORE THE PIZZAS ALREADY ON THE PAGE //
+// VARIABLES TO STORE THE PRODUCTS ALREADY ON THE PAGE //
 let leftProductOnPage = null;
 let middleProductOnPage = null;
 let rightProductOnPage = null;
