@@ -116,7 +116,7 @@ new ProductPicture('Pen', 'images/pen.jpg');
 new ProductPicture('Pet-sweep', 'images/pet-sweep.jpg');
 new ProductPicture('Scissors', 'images/scissors.jpg');
 new ProductPicture('Shark', 'images/shark.jpg');
-new ProductPicture('Sweep', 'images/sweep.jpg');
+new ProductPicture('Sweep', 'images/sweep.png');
 new ProductPicture('Tauntaun', 'images/tauntaun.jpg');
 new ProductPicture('Unicorn', 'images/unicorn.jpg');
 new ProductPicture('Water-can', 'images/water-can.jpg');
