@@ -50,11 +50,7 @@ footer {
 
 /* ////IMAGES//// */
 
-#busimage {
-  width: 215px;
-}
-
-#img {
+section img {
   height: 300px;
   width: 300px;
   margin-top: 40px;
