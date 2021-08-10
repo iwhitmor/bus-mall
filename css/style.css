@@ -5,7 +5,7 @@
 }
 
 body {
-  width: 1000px;
+  width: 1200px;
   background-color: rgb(196, 236, 247);
   margin: 0 auto;
 }
@@ -16,11 +16,12 @@ header {
 
 h1 { 
   display: inline-block;
-  font-size: 80px;
+  font-size: 100px;
   position: relative;
   bottom: 80px;
   padding: 10px;
   font-family: 'Notable', sans-serif;
+  text-align: center;
 }
 
 h2 {
@@ -34,6 +35,13 @@ div {
   padding: 10px;
 }
 
+aside {
+  height: 500px;
+  width: 500px;
+  background-color: lightcoral;
+  display: inline-block;
+}
+
 footer {
   text-align: center;
   margin-top: 50px;
@@ -44,7 +52,6 @@ footer {
 
 #busimage {
   width: 215px;
-  height: auto;
 }
 
 #img {
