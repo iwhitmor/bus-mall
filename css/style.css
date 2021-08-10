@@ -41,21 +41,10 @@ div {
   height: auto;
 }
 
-#left_product_img {
+#img {
   height: 300px;
   width: 300px;
   margin-top: 40px;
   border: 2px solid black;
 }
 
-#middle_product_img {
-  height: 300px;
-  width: 300px;
-  border: 2px solid black;
-}
-
-#right_product_img {
-  height: 300px;
-  width: 300px;
-  border: 2px solid black;
-}

@@ -2,105 +2,36 @@
 console.log('js file is connected');
 
 // GLOBAL VARIABLES //
-const productImageSectionTag = document.getElementById('all_products');
-const leftProductImageTag = document.getElementById('left_product_img');
-const middleProductImageTag = document.getElementById('middle_product_img');
-const rightProductImageTag = document.getElementById('right_product_img');
+let imageElements = document.getElementById('img');
+console.log('imageElements ', imageElements);
 
-let totalClicks = 0;
-
-// VARIABLES TO STORE THE PRODUCTS ALREADY ON THE PAGE //
-let leftProductOnPage = null;
-let middleProductOnPage = null;
-let rightProductOnPage = null;
+let productIndex1 = 0;
+let productIndex2 = 1;
+let productIndex3 = 2;
+let rounds = 5;
+let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
-const ProductPicture = function(name, imageSrc) {
+function Product(name, imageURL){
   this.name = name;
-  this.url = imageSrc;
-  // COUNT OUR PRODUCT VOTES //
-  this.click = 0;
+  this.imageURL = imageURL;
+  this.timesClicked = 0;
   this.timesShown = 0;
-  // PUSH OBJECT INTO OUR ARRAY TO STORE THE PRODUCT OBJECT //
-  ProductPicture.allImages.push(this);
-};
+  allProducts.push(this);
+}
 
-ProductPicture.allImages = [];
-console.log(ProductPicture.allImages);
-// PREVENT LAST PRODUCTS FROM BEING PICKED //
+console.log(allProducts);
 
-const renderNewProducts = function(leftIndex, middleIndex, rightIndex) {
-  // console.log('create the image src="X" for left, middle, and right images', leftIndex);
-  // console.log('ProductPicture.allImages[leftIndex].url;', ProductPicture.allImages[leftIndex].url);
-  leftProductImageTag.src = ProductPicture.allImages[leftIndex].url;
-  middleProductImageTag.src = ProductPicture.allImages[middleIndex].url;
-  rightProductImageTag.src = ProductPicture.allImages[rightIndex].url;
-};
+// Populate chart with object data //
 
-const pickNewProducts = function () {
-  const leftIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
-  console.log('leftIndex', leftIndex);
-  let rightIndex;
-  let middleIndex;
-  do {
-    middleIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
-    console.log('middleIndex', middleIndex);
-    rightIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
-    console.log('rightIndex', rightIndex);
-
-  } while (leftIndex === rightIndex || rightIndex === middleIndex || leftIndex === middleIndex);
-
-  console.log(ProductPicture.allImages[leftIndex].name, ProductPicture.allImages[middleIndex].name, ProductPicture.allImages[rightIndex].name);
-
-  leftProductOnPage = ProductPicture.allImages[leftIndex];
-  middleProductOnPage = ProductPicture.allImages[middleIndex];
-  rightProductOnPage = ProductPicture.allImages[rightIndex];
-  //function call to give the render new image src's
-  renderNewProducts(leftIndex, middleIndex, rightIndex);
-};
-
-const handleClickonProduct = function (event) {
-  // console.log('Lets handle the click now');
-  // console.log('left product on the page. ', leftProductOnPage);
-
-  if (totalClicks < 5) {
-
-    const thingWeClickOn = event.target;
-
-    // console.log('event target', event.target);
-    const id = thingWeClickOn.id;
-    // console.log('thingWeClickOn', thingWeClickOn);
-    // console.log('this is the id', id);
-
-    if (id === 'left_product_img') {
-      console.log('left product on the page.', leftProductOnPage);
-      leftProductOnPage.clicks++;
-      if (id === 'middle_product_img') {
-        console.log('middle product on the page.', middleProductOnPage);
-        middleProductOnPage.clicks++;
-      }
-      if (id === 'right_product_img') {
-        console.log('right prodcut on the page.', rightProductOnPage);
-        rightProductOnPage.clicks++;
-      }
-      console.log('left product on the page. ', leftProductOnPage);
-      leftProductOnPage.timesShown++;
-      middleProductOnPage.timesShown++;
-      rightProductOnPage.timesShown++;
-      pickNewProducts();
-    }
-    // console.log('is this running ', event.target.id);
+function getProductArray(nameOfThePropertyIWant){
+  let answer = [];
+  for(let i = 0; i < allProducts.length; i++){
+    answer[i] = allProducts[i][nameOfThePropertyIWant];
   }
-
-  totalClicks++;
-  // if (totalClicks === 5) {
-  //   productImageSectionTag.removeEventListener('click', handleClickonProduct);
-  //   // console.log('the vote has ended. and remove listener works. ');
-  // }
-
-};
-
-productImageSectionTag.addEventListener('click', handleClickonProduct);
+  console.log(answer);
+  return answer;
+}
 
 new ProductPicture('Bag', 'images/bag.jpg');
 new ProductPicture('Banana', 'images/banana.jpg');
@@ -122,12 +53,59 @@ new ProductPicture('Unicorn', 'images/unicorn.jpg');
 new ProductPicture('Water-can', 'images/water-can.jpg');
 new ProductPicture('Wine-Glass', 'images/wine-glass.jpg');
 
-leftProductOnPage = ProductPicture.allimages;
-middleProductOnPage = ProductPicture.allImages;
-rightProductOnPage = ProductPicture.allImages;
+let totalClicks = 0;
 
-pickNewProducts();
+function imageWasClicked(event){
+  // count total clicks //
+  totalClicks++;
+
+  // what was clicked on and lets increment the count for clicked on //
+  if(event.srcElement.id === '1'){
+    allProducts[productIndex1].timesClicked++;
+  } else if(event.srcElement.id === '2'){
+    allProducts[productIndex2].timesClicked++;
+  } else if(event.srcElement.id === '3'){
+    allProducts[productIndex3].timesClicked++;
+  }
+
+  // choose new images to render from click to click //
+  let nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
+  let nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
+  let nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
+
+  while((nextProductIndex1 === nextProductIndex2) || (nextProductIndex2 === nextProductIndex3) || (nextProductIndex3 === nextProductIndex1)){
+    nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
+  }
+  // set up a ref to the pizza index array //
+  productIndex1 = nextProductIndex1;
+  productIndex2 = nextProductIndex2;
+  productIndex3 = nextProductIndex3;
+
+  // update the image array positions 0 and 1 with the new pictures url //
+  imageElements[0].src = allProducts[productIndex1].imageURL;
+  allProducts[productIndex1].timesShown++;
+
+  imageElements[1].src = allProducts[productIndex2].imageURL;
+  allProducts[productIndex2].timesShown++;
+
+  imageElements[2].src = allProducts[productIndex3].imageURL;
+  allProducts[productIndex3].timesShown++;
+
+  if(totalClicks >= rounds){
+    let footerElement = document.getElementById('footer');
+    // remove the fires child the h2 //
+    if(footerElement.firstChildElement){
+      footerElement.firstChildElement.remove();
+    }
+    footerElement.textContent = 'You picked a lot of products.';
+
+    let asideUL = document.getElementById('voteResults');
+
+    // count total clicks vs rounds //
+    // create li items to show image info on clicks and siplay the percentages //
+
+  
+  }
 
 
-
-
+}
