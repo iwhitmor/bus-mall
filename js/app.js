@@ -58,6 +58,7 @@ let totalClicks = 0;
 function imageWasClicked(event) {
   totalClicks++;
 
+
   if (event.srcElement.id === '1') {
     allProducts[productIndex1].timesClicked++;
   } else if (event.srcElement.id === '2') {
