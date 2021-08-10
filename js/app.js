@@ -73,6 +73,8 @@ function imageWasClicked(event) {
 
   while ((nextProductIndex1 === nextProductIndex2) || (nextProductIndex2 === nextProductIndex3) || (nextProductIndex3 === nextProductIndex1)) {
     nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
+    nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
+    nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
   }
   
   productIndex1 = nextProductIndex1;
@@ -95,7 +97,7 @@ function imageWasClicked(event) {
     if (footerElement.firstChildElement) {
       footerElement.firstChildElement.remove();
     }
-    footerElement.textContent = 'You picked a lot of products.';
+    footerElement.textContent = 'Ok, thanks. You picked enough products.';
 
     let asideUL = document.getElementById('voteResults');
 
@@ -110,11 +112,11 @@ function imageWasClicked(event) {
       let percentageListItem = document.createElement('li');
       let math;
       if (allProducts[i].timesClicked === 0) {
-        math = `Zero click and shown ${allProducts[i].timesShown} times. Must be a bad product`;
+        math = `zero click and shown ${allProducts[i].timesShown} times. Must be a bad product`;
       } else {
-        math = Math.round(((allProducts[i]['timesClicked'] / allProducts[i]['timesShown']).toFixed(2) * 100)) + '%';
+        math = Math.round(((allProducts[i][timesClicked] / allProducts[i][timesShown]).toFixed(2) * 100)) + '%';
       }
-      percentageListItem.textContent = `${allProducts[i].name} percentage of times clicked on VS. times shown is ` + math;
+      percentageListItem.textContent = `${allProducts[i].name} percentage of times clicked on VS. times shown is ${math}`;
       asideUL.appendChild(percentageListItem);
     }
 
@@ -168,4 +170,3 @@ function runMyChartsNow() {
     }
   });
 }
-
