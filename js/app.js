@@ -2,7 +2,6 @@
 console.log('js file is connected');
 
 // GLOBAL VARIABLES //
-
 const productImageSectionTag = document.getElementById('all_products');
 const leftProductImageTag = document.getElementById('left_product_img');
 const middleProductImageTag = document.getElementById('middle_product_img');
@@ -16,7 +15,7 @@ let middleProductOnPage = null;
 let rightProductOnPage = null;
 
 // CONSTRUCTOR FUNCTION //
-const ProductPicture = function (name, imageSrc) {
+const ProductPicture = function(name, imageSrc) {
   this.name = name;
   this.url = imageSrc;
   // COUNT OUR PRODUCT VOTES //
@@ -27,12 +26,12 @@ const ProductPicture = function (name, imageSrc) {
 };
 
 ProductPicture.allImages = [];
-
+console.log(ProductPicture.allImages);
 // PREVENT LAST PRODUCTS FROM BEING PICKED //
 
-const renderNewProducts = function (leftIndex, middleIndex, rightIndex) {
-  console.log('create the image src="X" for left, middle, and right images', leftIndex);
-  console.log('ProductPicture.allImages[leftIndex].url;', ProductPicture.allImages[leftIndex].url);
+const renderNewProducts = function(leftIndex, middleIndex, rightIndex) {
+  // console.log('create the image src="X" for left, middle, and right images', leftIndex);
+  // console.log('ProductPicture.allImages[leftIndex].url;', ProductPicture.allImages[leftIndex].url);
   leftProductImageTag.src = ProductPicture.allImages[leftIndex].url;
   middleProductImageTag.src = ProductPicture.allImages[middleIndex].url;
   rightProductImageTag.src = ProductPicture.allImages[rightIndex].url;
@@ -42,27 +41,36 @@ const pickNewProducts = function () {
   const leftIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
   console.log('leftIndex', leftIndex);
   let rightIndex;
+  let middleIndex;
   do {
+    middleIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
+    console.log('middleIndex', middleIndex);
     rightIndex = Math.floor(Math.random() * ProductPicture.allImages.length);
+    console.log('rightIndex', rightIndex);
+
   } while (leftIndex === rightIndex || rightIndex === middleIndex || leftIndex === middleIndex);
-  console.log(ProductPicture.allImages[leftIndex].name + ' and ' + ProductPicture.allimages[rightIndex].name);
+
+  console.log(ProductPicture.allImages[leftIndex].name, ProductPicture.allImages[middleIndex].name, ProductPicture.allImages[rightIndex].name);
+
   leftProductOnPage = ProductPicture.allImages[leftIndex];
-  middleProdcutOnPage = ProductPicture.allImages[middleIndex];
+  middleProductOnPage = ProductPicture.allImages[middleIndex];
   rightProductOnPage = ProductPicture.allImages[rightIndex];
-  renderNewProducts(leftIndex, rightIndex);
+  //function call to give the render new image src's
+  renderNewProducts(leftIndex, middleIndex, rightIndex);
 };
 
 const handleClickonProduct = function (event) {
-  console.log('Lets handle the click now');
-  console.log('left product on the page. ', leftProductOnPage);
+  // console.log('Lets handle the click now');
+  // console.log('left product on the page. ', leftProductOnPage);
 
   if (totalClicks < 5) {
 
     const thingWeClickOn = event.target;
-    console.log('event target', event.target);
+
+    // console.log('event target', event.target);
     const id = thingWeClickOn.id;
-    console.log('thingWeClickOn', thingWeClickOn);
-    console.log('this is the id', id);
+    // console.log('thingWeClickOn', thingWeClickOn);
+    // console.log('this is the id', id);
 
     if (id === 'left_product_img') {
       console.log('left product on the page.', leftProductOnPage);
@@ -81,14 +89,14 @@ const handleClickonProduct = function (event) {
       rightProductOnPage.timesShown++;
       pickNewProducts();
     }
-    console.log('is this running ', event.target.id);
+    // console.log('is this running ', event.target.id);
   }
 
   totalClicks++;
-  if (totalClicks === 5) {
-    productImageSectionTag.removeEventListener('click', handleClickonProduct);
-    console.log('the vote has ended. and remove listener works. ');
-  }
+  // if (totalClicks === 5) {
+  //   productImageSectionTag.removeEventListener('click', handleClickonProduct);
+  //   // console.log('the vote has ended. and remove listener works. ');
+  // }
 
 };
 
