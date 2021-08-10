@@ -2,7 +2,7 @@
 console.log('js file is connected');
 
 // GLOBAL VARIABLES //
-let imageElements = document.getElementById('img');
+let imageElements = document.getElementsByTagName('img');
 console.log('imageElements ', imageElements);
 
 let productIndex1 = 0;
@@ -56,10 +56,8 @@ new Product('Wine-Glass', 'images/wine-glass.jpg');
 let totalClicks = 0;
 
 function imageWasClicked(event) {
-  // count total clicks //
   totalClicks++;
 
-  // what was clicked on and lets increment the count for clicked on //
   if (event.srcElement.id === '1') {
     allProducts[productIndex1].timesClicked++;
   } else if (event.srcElement.id === '2') {
@@ -68,7 +66,7 @@ function imageWasClicked(event) {
     allProducts[productIndex3].timesClicked++;
   }
 
-  // choose new images to render from click to click //
+  // new images to render from click to click //
   let nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
   let nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
   let nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
@@ -76,7 +74,7 @@ function imageWasClicked(event) {
   while ((nextProductIndex1 === nextProductIndex2) || (nextProductIndex2 === nextProductIndex3) || (nextProductIndex3 === nextProductIndex1)) {
     nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
   }
-  // set up a ref to the pizza index array //
+  
   productIndex1 = nextProductIndex1;
   productIndex2 = nextProductIndex2;
   productIndex3 = nextProductIndex3;
@@ -93,7 +91,7 @@ function imageWasClicked(event) {
 
   if (totalClicks >= rounds) {
     let footerElement = document.getElementById('footer');
-    // remove the fires child the h2 //
+  
     if (footerElement.firstChildElement) {
       footerElement.firstChildElement.remove();
     }
@@ -128,7 +126,10 @@ function imageWasClicked(event) {
     runMyChartsNow();
   }
 }
-
+for(let i = 0; i < imageElements.length; i++){
+  imageElements[i].addEventListener('click', imageWasClicked);
+  console.log('is this thing working?');
+}
 function runMyChartsNow() {
   let ctx = document.getElementById('myChart').getContext('2d');
 
@@ -168,7 +169,3 @@ function runMyChartsNow() {
   });
 }
 
-for(let i = 0; i < imageElements.length; i++){
-  imageElements[i].addEventListener('click', imageWasClicked);
-  console.log('is this thing working?');
-}
