@@ -26,12 +26,18 @@ h1 {
 h2 {
   text-align: center;
   margin-top: 25px;
-  font-size: 23px;
+  font-size: 25px;
 }
 
 div {
   display: inline;
   padding: 10px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 23px;
 }
 
 /* ////IMAGES//// */
@@ -47,4 +53,5 @@ div {
   margin-top: 40px;
   border: 2px solid black;
 }
+
 
