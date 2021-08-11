@@ -11,38 +11,39 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <img id="busimage" src="/images/bus.png" alt="picture of a bus">
     <h1>The Bus Mall</h1>
   </header>
 
   <main>
-    <section id="all_products">
-
-      <h2>CLICK ON AN IMAGE TO CHOOSE WHICH PRODUCT YOU WOULD BUY</h2>
-
-      <div id="left_product">
-        <img src="images/chair.jpg" id="left_product_img" alt="chair">
-      </div>
-
-      <div id="middle_product">
-        <img src="images/cthulhu.jpg" id="middle_product_img" alt="kids figurine">
-      </div>
-
-      <div id="right_product">
-        <img src="images/bag.jpg" id="right_product_img" alt="bag">
-      </div>
-
+    <h2>CLICK ON AN IMAGE TO CHOOSE WHICH PRODUCT YOU WOULD BUY</h2>
+    <section>
+      <img src="images/chair.jpg" id="1" alt="chair">
+      <img src="images/cthulhu.jpg" id="2" alt="kids figurine">
+      <img src="images/bag.jpg" id="3" alt="bag">
     </section>
+    <aside>
+      <ul id="voteResults">
+      </ul>
+    </aside>
   </main>
+  <footer id="footer">
+    <canvas id="myChart" width="400" height="200"></canvas>
+    </canvas>
+  </footer>
 
-
-
-  <script src="/js/app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
