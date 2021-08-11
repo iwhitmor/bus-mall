@@ -8,7 +8,7 @@ console.log('imageElements ', imageElements);
 let productIndex1 = 0;
 let productIndex2 = 1;
 let productIndex3 = 2;
-let rounds = 5;
+let rounds = 25;
 let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
@@ -57,6 +57,7 @@ let totalClicks = 0;
 
 function imageWasClicked(event) {
   totalClicks++;
+  console.log('is this click working?');
 
 
   if (event.srcElement.id === '1') {
@@ -72,15 +73,32 @@ function imageWasClicked(event) {
   let nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
   let nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
 
-  while ((nextProductIndex1 === nextProductIndex2) || (nextProductIndex2 === nextProductIndex3) || (nextProductIndex3 === nextProductIndex1)) {
+  while ((nextProductIndex1 === productIndex1) ||
+   (nextProductIndex1 === productIndex2) || 
+   (nextProductIndex1 === productIndex3) || 
+   (nextProductIndex1 === nextProductIndex2) || 
+   (nextProductIndex1 === nextProductIndex3)){
     nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
-    nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
-    nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
   }
-  
+  while ((nextProductIndex2 === productIndex1) || 
+  (nextProductIndex2 === productIndex2) || 
+  (nextProductIndex2 === productIndex3) || 
+  (nextProductIndex2 === nextProductIndex1) || 
+  (nextProductIndex2 === nextProductIndex3)){
+    nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
+  }
+  while ((nextProductIndex3 === productIndex1) ||
+   (nextProductIndex3 === productIndex2) ||
+   (nextProductIndex3 === productIndex3) ||
+   (nextProductIndex3 === nextProductIndex2) ||
+   (nextProductIndex3 === nextProductIndex1)){
+    nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
+}
+
   productIndex1 = nextProductIndex1;
   productIndex2 = nextProductIndex2;
   productIndex3 = nextProductIndex3;
+
 
   // update the image array positions 0 and 1 with the new pictures url //
   imageElements[0].src = allProducts[productIndex1].imageURL;
@@ -94,7 +112,7 @@ function imageWasClicked(event) {
 
   if (totalClicks >= rounds) {
     let footerElement = document.getElementById('footer');
-  
+
     if (footerElement.firstChildElement) {
       footerElement.firstChildElement.remove();
     }
@@ -129,9 +147,9 @@ function imageWasClicked(event) {
     runMyChartsNow();
   }
 }
-for(let i = 0; i < imageElements.length; i++){
+for (let i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
-  console.log('is this thing working?');
+  
 }
 function runMyChartsNow() {
   let ctx = document.getElementById('myChart').getContext('2d');
