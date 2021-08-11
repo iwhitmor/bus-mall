@@ -115,6 +115,9 @@ function imageWasClicked(event) {
   allProducts[productIndex3].timesShown++;
 
   if (totalClicks >= rounds) {
+
+    localStorage.setItem('savedProduct', JSON.stringify(allProducts));
+
     let footerElement = document.getElementById('footer');
 
     if (footerElement.firstChildElement) {
