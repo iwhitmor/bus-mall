@@ -8,7 +8,7 @@ console.log('imageElements ', imageElements);
 let productIndex1 = 0;
 let productIndex2 = 1;
 let productIndex3 = 2;
-let rounds = 25;
+let rounds = 10;
 let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
@@ -116,16 +116,13 @@ function imageWasClicked(event) {
     if (footerElement.firstChildElement) {
       footerElement.firstChildElement.remove();
     }
-    footerElement.textContent = 'Ok, thanks. You picked enough products.';
+    footerElement.textContent = 'ALL DONE';
 
     let asideUL = document.getElementById('voteResults');
 
-    // count total clicks vs rounds //
-    // create li items to show image info on clicks and siplay the percentages //
-
     for (let i = 0; i < allProducts.length; i++) {
       let voteResultsListItem = document.createElement('li');
-      voteResultsListItem.textContent = `${allProducts[i].name} was clicked on ${allProducts[i].timesClicked} times and was shown ${allProducts.timesShown} times `;
+      voteResultsListItem.textContent = `${allProducts[i].name} was clicked on ${allProducts[i].timesClicked} times and was shown ${allProducts[i].timesShown} times `;
       asideUL.appendChild(voteResultsListItem);
 
       let percentageListItem = document.createElement('li');
@@ -133,9 +130,9 @@ function imageWasClicked(event) {
       if (allProducts[i].timesClicked === 0) {
         math = `zero click and shown ${allProducts[i].timesShown} times. Must be a bad product`;
       } else {
-        math = Math.round(((allProducts[i][timesClicked] / allProducts[i][timesShown]).toFixed(2) * 100)) + '%';
+        math = Math.round(((allProducts[i]['timesClicked'] / allProducts[i]['timesShown']).toFixed(2) * 100)) + '%';
       }
-      percentageListItem.textContent = `${allProducts[i].name} percentage of times clicked on VS. times shown is ${math}`;
+      percentageListItem.textContent = `${allProducts[i].name} percentage of times clicked on vs. times shown is ${math}`;
       asideUL.appendChild(percentageListItem);
     }
 
@@ -189,3 +186,4 @@ function runMyChartsNow() {
     }
   });
 }
+32
