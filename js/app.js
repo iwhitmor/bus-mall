@@ -12,11 +12,20 @@ let rounds = 25;
 let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
-function Product(name, imageURL) {
+function Product(name, imageURL, timesClicked, timesShown) {
   this.name = name;
   this.imageURL = imageURL;
-  this.timesClicked = 0;
-  this.timesShown = 0;
+
+  if (timesClicked) {
+    this.timesClicked = timesClicked;
+  } else {
+    this.timesClicked = 0;
+  }
+  if (timesShown) {
+    this.timesShown = timesShown;
+  } else {
+    this.timesShown = 0;
+  }
   allProducts.push(this);
 }
 
@@ -31,25 +40,45 @@ function getProductArray(nameOfThePropertyIWant) {
   return answer;
 }
 
-new Product('Bag', 'images/bag.jpg');
-new Product('Banana', 'images/banana.jpg');
-new Product('Bathroom', 'images/bathroom.jpg');
-new Product('Boots', 'images/boots.jpg');
-new Product('Breakfast', 'images/breakfast.jpg');
-new Product('Bubblegum', 'images/bubblegum.jpg');
-new Product('Chair', 'images/chair.jpg');
-new Product('Cthulhu', 'images/cthulhu.jpg');
-new Product('Dog-Dug', 'images/dog-duck.jpg');
-new Product('Dragon', 'images/dragon.jpg');
-new Product('Pen', 'images/pen.jpg');
-new Product('Pet-sweep', 'images/pet-sweep.jpg');
-new Product('Scissors', 'images/scissors.jpg');
-new Product('Shark', 'images/shark.jpg');
-new Product('Sweep', 'images/sweep.png');
-new Product('Tauntaun', 'images/tauntaun.jpg');
-new Product('Unicorn', 'images/unicorn.jpg');
-new Product('Water-can', 'images/water-can.jpg');
-new Product('Wine-Glass', 'images/wine-glass.jpg');
+let savedProductString = localStorage.getItem('savedProduct');
+
+if (savedProductString) {
+  let arrayOfNotProduct = JSON.parse(savedProductString);
+  console.log('if condition what is our type ', arrayOfNotProduct);
+
+  for (let j = 0; j < arrayOfNotProduct.length; j++) {
+    new Product(
+      arrayOfNotProduct[j].name,
+      arrayOfNotProduct[j].imageURL,
+      arrayOfNotProduct[j].timesClicked,
+      arrayOfNotProduct[j].timesShown
+    );
+  }
+} else {
+
+  new Product('Bag', 'images/bag.jpg');
+  new Product('Banana', 'images/banana.jpg');
+  new Product('Bathroom', 'images/bathroom.jpg');
+  new Product('Boots', 'images/boots.jpg');
+  new Product('Breakfast', 'images/breakfast.jpg');
+  new Product('Bubblegum', 'images/bubblegum.jpg');
+  new Product('Chair', 'images/chair.jpg');
+  new Product('Cthulhu', 'images/cthulhu.jpg');
+  new Product('Dog-Dug', 'images/dog-duck.jpg');
+  new Product('Dragon', 'images/dragon.jpg');
+  new Product('Pen', 'images/pen.jpg');
+  new Product('Pet-sweep', 'images/pet-sweep.jpg');
+  new Product('Scissors', 'images/scissors.jpg');
+  new Product('Shark', 'images/shark.jpg');
+  new Product('Sweep', 'images/sweep.png');
+  new Product('Tauntaun', 'images/tauntaun.jpg');
+  new Product('Unicorn', 'images/unicorn.jpg');
+  new Product('Water-can', 'images/water-can.jpg');
+  new Product('Wine-Glass', 'images/wine-glass.jpg');
+}
+
+allProducts[0].timesShown = 1;
+allProducts[1].timesShown = 1;
 
 let totalClicks = 0;
 
@@ -71,26 +100,26 @@ function imageWasClicked(event) {
   let nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
 
   while ((nextProductIndex1 === productIndex1) ||
-   (nextProductIndex1 === productIndex2) || 
-   (nextProductIndex1 === productIndex3) || 
-   (nextProductIndex1 === nextProductIndex2) || 
-   (nextProductIndex1 === nextProductIndex3)){
+    (nextProductIndex1 === productIndex2) ||
+    (nextProductIndex1 === productIndex3) ||
+    (nextProductIndex1 === nextProductIndex2) ||
+    (nextProductIndex1 === nextProductIndex3)) {
     nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
   }
-  while ((nextProductIndex2 === productIndex1) || 
-  (nextProductIndex2 === productIndex2) || 
-  (nextProductIndex2 === productIndex3) || 
-  (nextProductIndex2 === nextProductIndex1) || 
-  (nextProductIndex2 === nextProductIndex3)){
+  while ((nextProductIndex2 === productIndex1) ||
+    (nextProductIndex2 === productIndex2) ||
+    (nextProductIndex2 === productIndex3) ||
+    (nextProductIndex2 === nextProductIndex1) ||
+    (nextProductIndex2 === nextProductIndex3)) {
     nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
   }
   while ((nextProductIndex3 === productIndex1) ||
-   (nextProductIndex3 === productIndex2) ||
-   (nextProductIndex3 === productIndex3) ||
-   (nextProductIndex3 === nextProductIndex2) ||
-   (nextProductIndex3 === nextProductIndex1)){
+    (nextProductIndex3 === productIndex2) ||
+    (nextProductIndex3 === productIndex3) ||
+    (nextProductIndex3 === nextProductIndex2) ||
+    (nextProductIndex3 === nextProductIndex1)) {
     nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
-}
+  }
 
   productIndex1 = nextProductIndex1;
   productIndex2 = nextProductIndex2;
@@ -106,6 +135,9 @@ function imageWasClicked(event) {
   allProducts[productIndex3].timesShown++;
 
   if (totalClicks >= rounds) {
+
+    localStorage.setItem('savedProduct', JSON.stringify(allProducts));
+
     let footerElement = document.getElementById('footer');
 
     if (footerElement.firstChildElement) {
@@ -113,7 +145,7 @@ function imageWasClicked(event) {
     }
 
     let asideUL = document.getElementById('voteResults');
-    
+
     for (let i = 0; i < allProducts.length; i++) {
       let voteResultsListItem = document.createElement('li');
       voteResultsListItem.textContent = `${allProducts[i].name} was clicked on ${allProducts[i].timesClicked} times and was shown ${allProducts[i].timesShown} times `;
@@ -134,9 +166,9 @@ function imageWasClicked(event) {
       imageElements[i].removeEventListener('click', imageWasClicked);
       console.log('is this thing working?');
     }
-    runMyChartNow(); 
+    runMyChartNow();
   }
-  
+
 }
 for (let i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
