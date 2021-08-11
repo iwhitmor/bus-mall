@@ -8,7 +8,7 @@ console.log('imageElements ', imageElements);
 let productIndex1 = 0;
 let productIndex2 = 1;
 let productIndex3 = 2;
-let rounds = 10;
+let rounds = 25;
 let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
@@ -21,8 +21,6 @@ function Product(name, imageURL) {
 }
 
 console.log(allProducts);
-
-// Populate chart with object data //
 
 function getProductArray(nameOfThePropertyIWant) {
   let answer = [];
@@ -68,7 +66,6 @@ function imageWasClicked(event) {
     allProducts[productIndex3].timesClicked++;
   }
 
-  // new images to render from click to click //
   let nextProductIndex1 = Math.floor(Math.random() * allProducts.length);
   let nextProductIndex2 = Math.floor(Math.random() * allProducts.length);
   let nextProductIndex3 = Math.floor(Math.random() * allProducts.length);
@@ -99,8 +96,6 @@ function imageWasClicked(event) {
   productIndex2 = nextProductIndex2;
   productIndex3 = nextProductIndex3;
 
-
-  // update the image array positions 0 and 1 with the new pictures url //
   imageElements[0].src = allProducts[productIndex1].imageURL;
   allProducts[productIndex1].timesShown++;
 
@@ -116,10 +111,9 @@ function imageWasClicked(event) {
     if (footerElement.firstChildElement) {
       footerElement.firstChildElement.remove();
     }
-    footerElement.textContent = 'ALL DONE';
 
     let asideUL = document.getElementById('voteResults');
-
+    
     for (let i = 0; i < allProducts.length; i++) {
       let voteResultsListItem = document.createElement('li');
       voteResultsListItem.textContent = `${allProducts[i].name} was clicked on ${allProducts[i].timesClicked} times and was shown ${allProducts[i].timesShown} times `;
@@ -136,19 +130,20 @@ function imageWasClicked(event) {
       asideUL.appendChild(percentageListItem);
     }
 
-    // remove event listener //
     for (let i = 0; i < imageElements.length; i++) {
       imageElements[i].removeEventListener('click', imageWasClicked);
       console.log('is this thing working?');
     }
-    runMyChartsNow();
+    runMyChartNow(); 
   }
+  
 }
 for (let i = 0; i < imageElements.length; i++) {
   imageElements[i].addEventListener('click', imageWasClicked);
-  
 }
-function runMyChartsNow() {
+
+
+function runMyChartNow() {
   let ctx = document.getElementById('myChart').getContext('2d');
 
   new Chart(ctx, {
@@ -186,4 +181,3 @@ function runMyChartsNow() {
     }
   });
 }
-32

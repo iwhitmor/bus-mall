@@ -6,40 +6,44 @@
 
 body {
   width: 1200px;
-  background-color: rgb(196, 236, 247);
+  background-color: rgb(188, 240, 255);
   margin: 0 auto;
 }
 
 header {
   margin-top: 50px;
+  margin-bottom: 100px;
+  border: solid 10px white;
+  background-color: rgb(255, 139, 245);
 }
 
+
 h1 { 
-  display: inline-block;
   font-size: 100px;
-  position: relative;
-  bottom: 80px;
-  padding: 10px;
-  font-family: 'Notable', sans-serif;
   text-align: center;
+  font-family: 'Permanent Marker', cursive;
 }
 
 h2 {
   text-align: center;
   margin-top: 25px;
   font-size: 25px;
-}
-
-div {
-  display: inline;
-  padding: 10px;
+  font-family: 'Roboto', sans-serif;
 }
 
 aside {
-  height: 500px;
-  width: 500px;
-  background-color: lightcoral;
-  display: inline-block;
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+  border: 5px solid white;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: rgb(255, 139, 245);
+}
+
+#asideid {
+  margin-bottom: 30px;
 }
 
 footer {
@@ -50,11 +54,14 @@ footer {
 
 /* ////IMAGES//// */
 
-section img {
-  height: 300px;
-  width: 300px;
+img {
+  height: 200px;
+  width: 200px;
   margin-top: 40px;
   border: 2px solid black;
+  margin-right: 20px; 
 }
 
-
+section {
+  text-align: center;
+}

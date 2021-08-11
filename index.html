@@ -11,7 +11,13 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Notable&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,26 +27,23 @@
 
   <main>
     <h2>CLICK ON AN IMAGE TO CHOOSE WHICH PRODUCT YOU WOULD BUY</h2>
-    <aside>
-      <h2>RESULTS</h2>
-      <ul id="voteResults">
-      </ul>
-    </aside>
     <section>
       <img src="images/chair.jpg" id="1" alt="chair">
       <img src="images/cthulhu.jpg" id="2" alt="kids figurine">
       <img src="images/bag.jpg" id="3" alt="bag">
     </section>
+    <aside>
+      <ul id="voteResults">
+      </ul>
+    </aside>
   </main>
   <footer id="footer">
-    <p>VOTE ON SOME OF OUR TOP PRODUCTS!</p>
-    <canvas id="myChart" width="400" height="400">
-     
+    <canvas id="myChart" width="400" height="200"></canvas>
     </canvas>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
-  <script src="/js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 
 </html>
