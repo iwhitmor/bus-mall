@@ -12,11 +12,20 @@ let rounds = 25;
 let allProducts = [];
 
 // CONSTRUCTOR FUNCTION //
-function Product(name, imageURL) {
+function Product(name, imageURL, timesClicked, timesShown) {
   this.name = name;
   this.imageURL = imageURL;
-  this.timesClicked = 0;
-  this.timesShown = 0;
+  
+  if(timesClicked){
+    this.timesClicked = timesClicked;
+  } else {
+    this.timesClicked = 0;
+  }
+  if(timesShown){
+    this.timesShown = timesShown;
+  } else {
+    this.timesShown = 0;
+  }
   allProducts.push(this);
 }
 
