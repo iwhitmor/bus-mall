@@ -60,6 +60,11 @@ img {
   margin-top: 40px;
   border: 2px solid black;
   margin-right: 20px; 
+  transition: all .05s ease-in-out;
+}
+
+img:hover {
+  transform: scale(1.2);
 }
 
 section {
