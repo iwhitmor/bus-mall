@@ -2,16 +2,15 @@
 
 ## BusMall
 
-I build an app with a direct and powerful purpose. It does all of the things that it accomplishes well. I should describe the purpose and functionality so those that visit my README understand the app
+I built a Bus Mall website designed for the user to be able to pick what products they would buy out of three options by clicking on the images. The website stores the user's selections in local storage and also displays their answers in a list and graph after they are done selecting 25 products back to them on the main page
 
 ### Author: Ian Whitmore
 
 ### Links and Resources
 
-- submission PR
-- Any Links you used as reference
+- [Google Fonts](https://fonts.google.com/)
+- [Eric Meyer's CSS Reset](https://meyerweb.com/eric/tools/css/reset/)
 
 ### Reflections and Comments
 
-- Consider including the answers to your daily journal and submission questions here
-- This is also a good place to reflect on the tools and resources used and learned
+- This page was created using HTML, CSS, and JavaScript
